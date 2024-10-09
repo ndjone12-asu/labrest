@@ -5,19 +5,20 @@ import java.util.List;
 
 public class SurveyItemRequest {
     public SurveyItemRequest(){}
-    public SurveyItemRequest(int id, String questionStem, ArrayList<String> possibleAnswer, String correctAnswer) {
-        __id = id;
+    public SurveyItemRequest(int surveyItemId, String questionStem, ArrayList<String> possibleAnswer, String correctAnswer) {
+        __surveyItemId = surveyItemId;
         __questionStem = questionStem;
         __possibleAnswer = possibleAnswer;
         __correctAnswer = correctAnswer;
     }
-    private int __id;
+    private int __surveyItemId;
     private String __questionStem;
     private ArrayList<String> __possibleAnswer;
     private String __correctAnswer;
 
-    public int getID() {
-        return __id;
+    public int getSurveyItemId() {
+        System.out.println("THis ID: " + __surveyItemId);
+        return __surveyItemId;
     }
     public String getQuestionStem(){
         return __questionStem;
@@ -31,8 +32,8 @@ public class SurveyItemRequest {
         return __correctAnswer;
     }
 
-    public void setID(int id) {
-        __id = id;
+    public void setSurveyItemId(int surveyItemId) {
+        __surveyItemId = surveyItemId;
     }
     public void setQuestionStem(String questionStem) {
         __questionStem = questionStem;

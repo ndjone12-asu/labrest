@@ -2,18 +2,17 @@ package edu.asu.ser421.labRest_act2.model.exceptions;
 
 import net.minidev.json.JSONObject;
 
-import java.security.PublicKey;
-
-public class SurveyFullException extends RuntimeException {
+public class SurveyRequestIncomplete extends RuntimeException{
     private JSONObject error;
-    public SurveyFullException(){
-        this("Survey already has max items");
+    public SurveyRequestIncomplete() {
+        this("Survey Request Incomplete, missing field");
     }
 
-    public SurveyFullException(String s) {
+    public SurveyRequestIncomplete(String s) {
         error = new JSONObject();
         error.put("error", s);
     }
+
     public JSONObject getMessageJSON() {
 
         return this.error;

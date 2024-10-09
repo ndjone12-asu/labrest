@@ -36,7 +36,7 @@ public class SurveyController {
 
     @PatchMapping("/{surveyName}")
     public ResponseEntity<SurveyResponse> addSurveyItem(@PathVariable String surveyName, @RequestBody SurveyItemRequest surveyItemId) {
-        return new ResponseEntity<>(new SurveyResponse(surveyAPIService.addSurveyItem(surveyName, surveyItemId.getID())), HttpStatus.OK);
+        return new ResponseEntity<>(new SurveyResponse(surveyAPIService.addSurveyItem(surveyName, surveyItemId.getSurveyItemId())), HttpStatus.OK);
     }
 
     @DeleteMapping("/{surveyName}")
@@ -46,25 +46,30 @@ public class SurveyController {
 
     @ExceptionHandler(value = SurveyNotFoundException.class)
     public ResponseEntity<?> handleThrowable(SurveyNotFoundException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessageJSON(), HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(value = SurveyItemNotFoundException.class)
     public ResponseEntity<?> handleThrowable(SurveyItemNotFoundException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(e.getMessageJSON(), HttpStatus.NOT_FOUND);
     }
     @ExceptionHandler(value = SurveyFullException.class)
     public ResponseEntity<?> handleThrowable(SurveyFullException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(e.getMessageJSON(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(value = SurveyDeletedException.class)
     public ResponseEntity<?> handleThrowable(SurveyDeletedException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.FORBIDDEN);
+        return new ResponseEntity<>(e.getMessageJSON(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(value = SurveyInternalException.class)
     public ResponseEntity<?> handleThrowable(SurveyInternalException e) {
-        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<>(e.getMessageJSON(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(value = SurveyItemRequestIncomplete.class)
+    public ResponseEntity<?> handleThrowable(SurveyItemRequestIncomplete e) {
+        return new ResponseEntity<>(e.getMessageJSON(), HttpStatus.BAD_REQUEST);
     }
 
 }

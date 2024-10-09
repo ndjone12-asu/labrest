@@ -2,15 +2,13 @@ package edu.asu.ser421.labRest_act2.model.exceptions;
 
 import net.minidev.json.JSONObject;
 
-import java.security.PublicKey;
-
-public class SurveyFullException extends RuntimeException {
+public class SurveyInstanceNotFoundException extends RuntimeException{
     private JSONObject error;
-    public SurveyFullException(){
-        this("Survey already has max items");
+    public SurveyInstanceNotFoundException() {
+        this("Survey Instance Does Not Exist");
     }
 
-    public SurveyFullException(String s) {
+    public SurveyInstanceNotFoundException(String s) {
         error = new JSONObject();
         error.put("error", s);
     }

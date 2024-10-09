@@ -32,5 +32,8 @@ public interface SurveyAPIService {
     Survey getSurvey(String name) throws SurveyNotFoundException;
 
     List<SurveyInstance> getSurveyInstancesOfState(String state);
+
+    SurveyInstance getSurveyInstancesByName(String name);
+
     Survey deleteSurvey(String surveyName);
 }
